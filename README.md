@@ -1,4 +1,4 @@
-# Nuxt 3 Minimal Starter
+# Search Places
 
 Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
@@ -19,6 +19,25 @@ yarn install
 # bun
 bun install
 ```
+## Environment Configuration
+
+Before running the server, you need to configure the environment variables.
+
+### Steps to Set Up
+
+1. **Create a `.env` File**
+
+   In the root directory of your project, create a file named `.env`.
+
+2. **Add Environment Variable**
+
+   Open the `.env` file and add the following line:
+
+   ```env
+   RAPIDAPI_KEY=your_rapidapi_key_here
+
+Replace `YOUR_RAPIDAPI_KEY` with the API key you obtain from [RapidAPI](https://rapidapi.com/wirefreethought/api/geodb-cities).
+
 
 ## Development Server
 
