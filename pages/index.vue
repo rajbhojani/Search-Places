@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <SearchBox @search="performSearch" :loading="loading"/>
-        <PlaceTable :places="places" :itemsPerPage="itemsPerPage" :currentPage="currentPage" :loading="loading" />
+        <PlaceTable :places="places" :query="query" :itemsPerPage="itemsPerPage" :currentPage="currentPage" :loading="loading" />
         <div v-if="totalItems > 0" class="pagination-container">
             <Pagination :currentPage="currentPage" :totalPages="totalPages" @pageChange="changePage" />
             <input v-model.number="itemsPerPage" @change="changeItemsPerPage" type="number" min="1" max="10"

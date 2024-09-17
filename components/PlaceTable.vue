@@ -9,16 +9,20 @@
                     <th>Country</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr v-if="!places.length">
-                    <td colspan="3">Start searching</td>
+            <tbody v-if="!places.length">
+                <tr v-if="query == ''">
+                    <td colspan="3" class="norecords">Start searching</td>
                 </tr>
+                <tr v-if="query != ''">
+                    <td colspan="3" class="norecords">No Records Found</td>
+                </tr>
+            </tbody>
+            <tbody v-else>
                 <tr v-for="(place, index) in places" :key="place.id">
-                    <td>{{ index + 1 +((currentPage-1)*itemsPerPage)}}</td>
+                    <td>{{ index + 1 + ((currentPage - 1) * itemsPerPage) }}</td>
                     <td>{{ place.name }}</td>
                     <td class="flag">
                         <img :src="`https://flagsapi.com/${place.countryCode}/shiny/24.png`" alt="flag" />
-                        <span>{{ place.country }}</span>
                     </td>
                 </tr>
             </tbody>
@@ -29,7 +33,7 @@
 <script setup>
 import { ref, watch } from 'vue';
 
-const props = defineProps(['places', 'loading','currentPage','itemsPerPage']);
+const props = defineProps(['places', 'query', 'loading', 'currentPage', 'itemsPerPage']);
 
 const tableData = ref([]);
 watch(() => props.places, (newPlaces) => {
@@ -51,6 +55,7 @@ watch(() => props.places, (newPlaces) => {
 .place-table td {
     padding: 8px;
     border: 1px solid rgb(222, 226, 230);
+    text-align: left;
 }
 
 .place-table th {
@@ -62,8 +67,17 @@ watch(() => props.places, (newPlaces) => {
     font-size: 16px;
 }
 
-.flag{
+.norecords {
+    text-align: center;
+}
+
+.flag {
     display: flex;
-     align-items: center;
+    justify-content: left;
+}
+
+.flag img {
+    max-width: 24px;
+    height: auto;
 }
 </style>
